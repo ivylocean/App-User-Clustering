@@ -19,12 +19,10 @@ day6 <- read.table("D:/PKU/mobiledata/day06.txt", head = F, sep = ",")
 day6 <- day6[, c(1, 2, 8)]
 index <- rep(6, dim(day6)[1])
 day6 <- cbind(day6, index)
-
 cols <- c("uid", "appid", "duration", "day")
 data <- rbind(day2, day3, day4, day5, day6)
 colnames(data) <- cols
-dim(data)
-head(data)
+
 app_class <- read.csv("D:/PKU/mobiledata/app_class.csv", header = F)
 colnames(app_class) <- c("appid", "appclass")
 mobile <- merge(x = data, y = app_class, by = "appid", all.x = T, incomparables = NA)
@@ -40,7 +38,6 @@ load("D:/PKU/mobiledata/mobile.RData")
 
 library(tidyr)
 library(tidyverse)
-# install.packages("dplyr")
 mobile$day <- as.integer(mobile$day)
 mobile$duration <- as.numeric(mobile$duration)
 app_use <-  mobile %>% 
